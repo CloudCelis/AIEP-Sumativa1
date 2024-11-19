@@ -1,0 +1,61 @@
+{
+  "annotations": {
+    "changelogDate": "20241119120954"
+  },
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "medico",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "reserva",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "paciente",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "centroSalud",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fechaHora",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "estado",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Reserva",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "pacientes",
+      "relationshipName": "pacientes",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "medico",
+      "relationshipName": "fkMedico",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "centrosSalud",
+      "relationshipName": "centrosSalud",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

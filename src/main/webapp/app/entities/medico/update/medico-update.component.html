@@ -1,0 +1,181 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-medico-heading" data-cy="MedicoCreateUpdateHeading" jhiTranslate="sumativaApp.medico.home.createOrEditLabel">
+        Crear o editar Medico
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="sumativaApp.medico.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let medicoIdRef = editForm.get('medicoId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_medicoId" jhiTranslate="sumativaApp.medico.medicoId">Medico Id</label>
+          <input type="number" class="form-control" name="medicoId" id="field_medicoId" data-cy="medicoId" formControlName="medicoId" />
+          @if (medicoIdRef.invalid && (medicoIdRef.dirty || medicoIdRef.touched)) {
+            <div>
+              @if (editForm.get('medicoId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('medicoId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let nombreRef = editForm.get('nombre')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nombre" jhiTranslate="sumativaApp.medico.nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          @if (nombreRef.invalid && (nombreRef.dirty || nombreRef.touched)) {
+            <div>
+              @if (editForm.get('nombre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let apellidoPaternoRef = editForm.get('apellidoPaterno')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_apellidoPaterno" jhiTranslate="sumativaApp.medico.apellidoPaterno">Apellido Paterno</label>
+          <input
+            type="text"
+            class="form-control"
+            name="apellidoPaterno"
+            id="field_apellidoPaterno"
+            data-cy="apellidoPaterno"
+            formControlName="apellidoPaterno"
+          />
+          @if (apellidoPaternoRef.invalid && (apellidoPaternoRef.dirty || apellidoPaternoRef.touched)) {
+            <div>
+              @if (editForm.get('apellidoPaterno')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_apellidoMaterno" jhiTranslate="sumativaApp.medico.apellidoMaterno">Apellido Materno</label>
+          <input
+            type="text"
+            class="form-control"
+            name="apellidoMaterno"
+            id="field_apellidoMaterno"
+            data-cy="apellidoMaterno"
+            formControlName="apellidoMaterno"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_especialidad" jhiTranslate="sumativaApp.medico.especialidad">Especialidad</label>
+          <input
+            type="text"
+            class="form-control"
+            name="especialidad"
+            id="field_especialidad"
+            data-cy="especialidad"
+            formControlName="especialidad"
+          />
+        </div>
+
+        @let telefonoRef = editForm.get('telefono')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_telefono" jhiTranslate="sumativaApp.medico.telefono">Telefono</label>
+          <input type="text" class="form-control" name="telefono" id="field_telefono" data-cy="telefono" formControlName="telefono" />
+          @if (telefonoRef.invalid && (telefonoRef.dirty || telefonoRef.touched)) {
+            <div>
+              @if (editForm.get('telefono')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let correoRef = editForm.get('correo')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_correo" jhiTranslate="sumativaApp.medico.correo">Correo</label>
+          <input type="text" class="form-control" name="correo" id="field_correo" data-cy="correo" formControlName="correo" />
+          @if (correoRef.invalid && (correoRef.dirty || correoRef.touched)) {
+            <div>
+              @if (editForm.get('correo')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let centroSaludIdRef = editForm.get('centroSaludId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_centroSaludId" jhiTranslate="sumativaApp.medico.centroSaludId">Centro Salud Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="centroSaludId"
+            id="field_centroSaludId"
+            data-cy="centroSaludId"
+            formControlName="centroSaludId"
+          />
+          @if (centroSaludIdRef.invalid && (centroSaludIdRef.dirty || centroSaludIdRef.touched)) {
+            <div>
+              @if (editForm.get('centroSaludId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('centroSaludId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_centrosSalud" jhiTranslate="sumativaApp.medico.centrosSalud">Centros Salud</label>
+          <select
+            class="form-control"
+            id="field_centrosSalud"
+            data-cy="centrosSalud"
+            name="centrosSalud"
+            formControlName="centrosSalud"
+            [compareWith]="compareCentrosSalud"
+          >
+            <option [ngValue]="null"></option>
+            @for (centrosSaludOption of centrosSaludsCollection; track $index) {
+              <option [ngValue]="centrosSaludOption">{{ centrosSaludOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (centrosSalud(); as centrosSaludRef) {
+      <div>
+        <h2 data-cy="centrosSaludDetailsHeading"><span jhiTranslate="sumativaApp.centrosSalud.detail.title">Centros Salud</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ centrosSaludRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.centrosSalud.centroSaludID">Centro Salud ID</span></dt>
+          <dd>
+            <span>{{ centrosSaludRef.centroSaludID }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.centrosSalud.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ centrosSaludRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.centrosSalud.direccion">Direccion</span></dt>
+          <dd>
+            <span>{{ centrosSaludRef.direccion }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.centrosSalud.telefono">Telefono</span></dt>
+          <dd>
+            <span>{{ centrosSaludRef.telefono }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.centrosSalud.vigente">Vigente</span></dt>
+          <dd>
+            <span>{{ centrosSaludRef.vigente }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/centros-salud', centrosSaludRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

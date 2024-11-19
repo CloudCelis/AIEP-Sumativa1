@@ -1,0 +1,174 @@
+<div>
+  <h2 id="page-heading" data-cy="MedicoHeading">
+    <span jhiTranslate="sumativaApp.medico.home.title">Medicos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="sumativaApp.medico.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-medico"
+        [routerLink]="['/medico/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="sumativaApp.medico.home.createLabel">Crear nuevo Medico</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (medicos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="sumativaApp.medico.home.notFound">Ningún Medicos encontrado</span>
+    </div>
+  }
+
+  @if (medicos && medicos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="medicoId">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.medico.medicoId">Medico Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombre">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.medico.nombre">Nombre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="apellidoPaterno">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.medico.apellidoPaterno">Apellido Paterno</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="apellidoMaterno">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.medico.apellidoMaterno">Apellido Materno</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="especialidad">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.medico.especialidad">Especialidad</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telefono">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.medico.telefono">Telefono</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="correo">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.medico.correo">Correo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="centroSaludId">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.medico.centroSaludId">Centro Salud Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="centrosSalud.id">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.medico.centrosSalud">Centros Salud</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (medico of medicos; track trackId(medico)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/medico', medico.id, 'view']">{{ medico.id }}</a>
+              </td>
+              <td>{{ medico.medicoId }}</td>
+              <td>{{ medico.nombre }}</td>
+              <td>{{ medico.apellidoPaterno }}</td>
+              <td>{{ medico.apellidoMaterno }}</td>
+              <td>{{ medico.especialidad }}</td>
+              <td>{{ medico.telefono }}</td>
+              <td>{{ medico.correo }}</td>
+              <td>{{ medico.centroSaludId }}</td>
+              <td>
+                @if (medico.centrosSalud) {
+                  <div>
+                    <a [routerLink]="['/centros-salud', medico.centrosSalud.id, 'view']">{{ medico.centrosSalud.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/medico', medico.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/medico', medico.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(medico)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (medicos && medicos.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (pacientes(); as pacientesRef) {
+      <div>
+        <h2 data-cy="pacientesDetailsHeading"><span jhiTranslate="sumativaApp.pacientes.detail.title">Pacientes</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ pacientesRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.pacientes.pacienteId">Paciente Id</span></dt>
+          <dd>
+            <span>{{ pacientesRef.pacienteId }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.pacientes.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ pacientesRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.pacientes.apellidoPaterno">Apellido Paterno</span></dt>
+          <dd>
+            <span>{{ pacientesRef.apellidoPaterno }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.pacientes.apellidoMaterno">Apellido Materno</span></dt>
+          <dd>
+            <span>{{ pacientesRef.apellidoMaterno }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.pacientes.rut">Rut</span></dt>
+          <dd>
+            <span>{{ pacientesRef.rut }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.pacientes.fechaNacimiento">Fecha Nacimiento</span></dt>
+          <dd>
+            <span>{{ pacientesRef.fechaNacimiento | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.pacientes.genero">Genero</span></dt>
+          <dd>
+            <span>{{ pacientesRef.genero }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.pacientes.telefono">Telefono</span></dt>
+          <dd>
+            <span>{{ pacientesRef.telefono }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.pacientes.email">Email</span></dt>
+          <dd>
+            <span>{{ pacientesRef.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.pacientes.direccion">Direccion</span></dt>
+          <dd>
+            <span>{{ pacientesRef.direccion }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/pacientes', pacientesRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

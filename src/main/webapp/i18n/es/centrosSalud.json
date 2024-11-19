@@ -1,0 +1,29 @@
+{
+  "sumativaApp": {
+    "centrosSalud": {
+      "home": {
+        "title": "Centros Saluds",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Centros Salud",
+        "createOrEditLabel": "Crear o editar Centros Salud",
+        "notFound": "Ningún Centros Saluds encontrado"
+      },
+      "created": "Un nuevo Centros Salud ha sido creado con el identificador {{ param }}",
+      "updated": "Un Centros Salud ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Centros Salud ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Centros Salud {{ id }}?"
+      },
+      "detail": {
+        "title": "Centros Salud"
+      },
+      "id": "ID",
+      "centroSaludID": "Centro Salud ID",
+      "nombre": "Nombre",
+      "direccion": "Direccion",
+      "telefono": "Telefono",
+      "vigente": "Vigente",
+      "medico": "Medico"
+    }
+  }
+}

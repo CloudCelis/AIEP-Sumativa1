@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (medico(); as medicoRef) {
+      <div>
+        <h2 data-cy="medicoDetailsHeading"><span jhiTranslate="sumativaApp.medico.detail.title">Medico</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ medicoRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.medico.medicoId">Medico Id</span></dt>
+          <dd>
+            <span>{{ medicoRef.medicoId }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.medico.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ medicoRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.medico.apellidoPaterno">Apellido Paterno</span></dt>
+          <dd>
+            <span>{{ medicoRef.apellidoPaterno }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.medico.apellidoMaterno">Apellido Materno</span></dt>
+          <dd>
+            <span>{{ medicoRef.apellidoMaterno }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.medico.especialidad">Especialidad</span></dt>
+          <dd>
+            <span>{{ medicoRef.especialidad }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.medico.telefono">Telefono</span></dt>
+          <dd>
+            <span>{{ medicoRef.telefono }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.medico.correo">Correo</span></dt>
+          <dd>
+            <span>{{ medicoRef.correo }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.medico.centroSaludId">Centro Salud Id</span></dt>
+          <dd>
+            <span>{{ medicoRef.centroSaludId }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.medico.centrosSalud">Centros Salud</span></dt>
+          <dd>
+            @if (medico()!.centrosSalud) {
+              <div>
+                <a [routerLink]="['/centros-salud', medico()!.centrosSalud?.id, 'view']">{{ medicoRef.centrosSalud?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/medico', medicoRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

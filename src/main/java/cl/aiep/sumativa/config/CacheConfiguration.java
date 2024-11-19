@@ -52,6 +52,10 @@ public class CacheConfiguration {
             createCache(cm, cl.aiep.sumativa.domain.User.class.getName() + ".authorities");
             createCache(cm, cl.aiep.sumativa.domain.PersistentToken.class.getName());
             createCache(cm, cl.aiep.sumativa.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, cl.aiep.sumativa.domain.CentrosSalud.class.getName());
+            createCache(cm, cl.aiep.sumativa.domain.Pacientes.class.getName());
+            createCache(cm, cl.aiep.sumativa.domain.Medico.class.getName());
+            createCache(cm, cl.aiep.sumativa.domain.Reserva.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

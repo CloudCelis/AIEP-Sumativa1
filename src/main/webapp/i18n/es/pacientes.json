@@ -1,0 +1,33 @@
+{
+  "sumativaApp": {
+    "pacientes": {
+      "home": {
+        "title": "Pacientes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Pacientes",
+        "createOrEditLabel": "Crear o editar Pacientes",
+        "notFound": "Ningún Pacientes encontrado"
+      },
+      "created": "Un nuevo Pacientes ha sido creado con el identificador {{ param }}",
+      "updated": "Un Pacientes ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Pacientes ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Pacientes {{ id }}?"
+      },
+      "detail": {
+        "title": "Pacientes"
+      },
+      "id": "ID",
+      "pacienteId": "Paciente Id",
+      "nombre": "Nombre",
+      "apellidoPaterno": "Apellido Paterno",
+      "apellidoMaterno": "Apellido Materno",
+      "rut": "Rut",
+      "fechaNacimiento": "Fecha Nacimiento",
+      "genero": "Genero",
+      "telefono": "Telefono",
+      "email": "Email",
+      "direccion": "Direccion"
+    }
+  }
+}

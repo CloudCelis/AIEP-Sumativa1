@@ -1,0 +1,112 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-centros-salud-heading"
+        data-cy="CentrosSaludCreateUpdateHeading"
+        jhiTranslate="sumativaApp.centrosSalud.home.createOrEditLabel"
+      >
+        Crear o editar Centros Salud
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="sumativaApp.centrosSalud.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let centroSaludIDRef = editForm.get('centroSaludID')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_centroSaludID" jhiTranslate="sumativaApp.centrosSalud.centroSaludID">Centro Salud ID</label>
+          <input
+            type="number"
+            class="form-control"
+            name="centroSaludID"
+            id="field_centroSaludID"
+            data-cy="centroSaludID"
+            formControlName="centroSaludID"
+          />
+          @if (centroSaludIDRef.invalid && (centroSaludIDRef.dirty || centroSaludIDRef.touched)) {
+            <div>
+              @if (editForm.get('centroSaludID')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('centroSaludID')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let nombreRef = editForm.get('nombre')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nombre" jhiTranslate="sumativaApp.centrosSalud.nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          @if (nombreRef.invalid && (nombreRef.dirty || nombreRef.touched)) {
+            <div>
+              @if (editForm.get('nombre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let direccionRef = editForm.get('direccion')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_direccion" jhiTranslate="sumativaApp.centrosSalud.direccion">Direccion</label>
+          <input type="text" class="form-control" name="direccion" id="field_direccion" data-cy="direccion" formControlName="direccion" />
+          @if (direccionRef.invalid && (direccionRef.dirty || direccionRef.touched)) {
+            <div>
+              @if (editForm.get('direccion')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telefono" jhiTranslate="sumativaApp.centrosSalud.telefono">Telefono</label>
+          <input type="text" class="form-control" name="telefono" id="field_telefono" data-cy="telefono" formControlName="telefono" />
+        </div>
+
+        @let vigenteRef = editForm.get('vigente')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_vigente" jhiTranslate="sumativaApp.centrosSalud.vigente">Vigente</label>
+          <input type="text" class="form-control" name="vigente" id="field_vigente" data-cy="vigente" formControlName="vigente" />
+          @if (vigenteRef.invalid && (vigenteRef.dirty || vigenteRef.touched)) {
+            <div>
+              @if (editForm.get('vigente')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '1' }"
+                  >Este campo no puede superar más de 1 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

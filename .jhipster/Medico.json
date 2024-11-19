@@ -1,0 +1,64 @@
+{
+  "annotations": {
+    "changelogDate": "20241119115428"
+  },
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "medicoId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "apellidoPaterno",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "apellidoMaterno",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "especialidad",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "telefono",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "correo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "centroSaludId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Medico",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "id": false,
+      "otherEntityField": "id",
+      "otherEntityName": "centrosSalud",
+      "otherEntityRelationshipName": "medico",
+      "relationshipName": "centrosSalud",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

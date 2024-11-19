@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (reserva(); as reservaRef) {
+      <div>
+        <h2 data-cy="reservaDetailsHeading"><span jhiTranslate="sumativaApp.reserva.detail.title">Reserva</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ reservaRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.reserva.medico">Medico</span></dt>
+          <dd>
+            <span>{{ reservaRef.medico }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.reserva.reserva">Reserva</span></dt>
+          <dd>
+            <span>{{ reservaRef.reserva }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.reserva.paciente">Paciente</span></dt>
+          <dd>
+            <span>{{ reservaRef.paciente }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.reserva.centroSalud">Centro Salud</span></dt>
+          <dd>
+            <span>{{ reservaRef.centroSalud }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.reserva.fechaHora">Fecha Hora</span></dt>
+          <dd>
+            <span>{{ reservaRef.fechaHora | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.reserva.estado">Estado</span></dt>
+          <dd>
+            <span>{{ reservaRef.estado }}</span>
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.reserva.pacientes">Pacientes</span></dt>
+          <dd>
+            @if (reserva()!.pacientes) {
+              <div>
+                <a [routerLink]="['/pacientes', reserva()!.pacientes?.id, 'view']">{{ reservaRef.pacientes?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.reserva.fkMedico">Fk Medico</span></dt>
+          <dd>
+            @if (reserva()!.fkMedico) {
+              <div>
+                <a [routerLink]="['/medico', reserva()!.fkMedico?.id, 'view']">{{ reservaRef.fkMedico?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="sumativaApp.reserva.centrosSalud">Centros Salud</span></dt>
+          <dd>
+            @if (reserva()!.centrosSalud) {
+              <div>
+                <a [routerLink]="['/centros-salud', reserva()!.centrosSalud?.id, 'view']">{{ reservaRef.centrosSalud?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/reserva', reservaRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

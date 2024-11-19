@@ -1,0 +1,177 @@
+<div>
+  <h2 id="page-heading" data-cy="PacientesHeading">
+    <span jhiTranslate="sumativaApp.pacientes.home.title">Pacientes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="sumativaApp.pacientes.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pacientes"
+        [routerLink]="['/pacientes/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="sumativaApp.pacientes.home.createLabel">Crear nuevo Pacientes</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (pacientes?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="sumativaApp.pacientes.home.notFound">Ningún Pacientes encontrado</span>
+    </div>
+  }
+
+  @if (pacientes && pacientes.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pacienteId">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.pacientes.pacienteId">Paciente Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombre">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.pacientes.nombre">Nombre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="apellidoPaterno">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.pacientes.apellidoPaterno">Apellido Paterno</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="apellidoMaterno">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.pacientes.apellidoMaterno">Apellido Materno</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="rut">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.pacientes.rut">Rut</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaNacimiento">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.pacientes.fechaNacimiento">Fecha Nacimiento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="genero">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.pacientes.genero">Genero</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telefono">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.pacientes.telefono">Telefono</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="email">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.pacientes.email">Email</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="direccion">
+              <div class="d-flex">
+                <span jhiTranslate="sumativaApp.pacientes.direccion">Direccion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pacientes of pacientes; track trackId(pacientes)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/pacientes', pacientes.id, 'view']">{{ pacientes.id }}</a>
+              </td>
+              <td>{{ pacientes.pacienteId }}</td>
+              <td>{{ pacientes.nombre }}</td>
+              <td>{{ pacientes.apellidoPaterno }}</td>
+              <td>{{ pacientes.apellidoMaterno }}</td>
+              <td>{{ pacientes.rut }}</td>
+              <td>{{ pacientes.fechaNacimiento | formatMediumDate }}</td>
+              <td>{{ pacientes.genero }}</td>
+              <td>{{ pacientes.telefono }}</td>
+              <td>{{ pacientes.email }}</td>
+              <td>{{ pacientes.direccion }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/pacientes', pacientes.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/pacientes', pacientes.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(pacientes)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (pacientes && pacientes.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

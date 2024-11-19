@@ -1,0 +1,136 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-reserva-heading" data-cy="ReservaCreateUpdateHeading" jhiTranslate="sumativaApp.reserva.home.createOrEditLabel">
+        Crear o editar Reserva
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="sumativaApp.reserva.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_medico" jhiTranslate="sumativaApp.reserva.medico">Medico</label>
+          <input type="number" class="form-control" name="medico" id="field_medico" data-cy="medico" formControlName="medico" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reserva" jhiTranslate="sumativaApp.reserva.reserva">Reserva</label>
+          <input type="number" class="form-control" name="reserva" id="field_reserva" data-cy="reserva" formControlName="reserva" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_paciente" jhiTranslate="sumativaApp.reserva.paciente">Paciente</label>
+          <input type="number" class="form-control" name="paciente" id="field_paciente" data-cy="paciente" formControlName="paciente" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_centroSalud" jhiTranslate="sumativaApp.reserva.centroSalud">Centro Salud</label>
+          <input
+            type="number"
+            class="form-control"
+            name="centroSalud"
+            id="field_centroSalud"
+            data-cy="centroSalud"
+            formControlName="centroSalud"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fechaHora" jhiTranslate="sumativaApp.reserva.fechaHora">Fecha Hora</label>
+          <div class="input-group">
+            <input
+              id="field_fechaHora"
+              data-cy="fechaHora"
+              type="text"
+              class="form-control"
+              name="fechaHora"
+              ngbDatepicker
+              #fechaHoraDp="ngbDatepicker"
+              formControlName="fechaHora"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaHoraDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_estado" jhiTranslate="sumativaApp.reserva.estado">Estado</label>
+          <input type="text" class="form-control" name="estado" id="field_estado" data-cy="estado" formControlName="estado" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pacientes" jhiTranslate="sumativaApp.reserva.pacientes">Pacientes</label>
+          <select
+            class="form-control"
+            id="field_pacientes"
+            data-cy="pacientes"
+            name="pacientes"
+            formControlName="pacientes"
+            [compareWith]="comparePacientes"
+          >
+            <option [ngValue]="null"></option>
+            @for (pacientesOption of pacientesSharedCollection; track $index) {
+              <option [ngValue]="pacientesOption">{{ pacientesOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fkMedico" jhiTranslate="sumativaApp.reserva.fkMedico">Fk Medico</label>
+          <select
+            class="form-control"
+            id="field_fkMedico"
+            data-cy="fkMedico"
+            name="fkMedico"
+            formControlName="fkMedico"
+            [compareWith]="compareMedico"
+          >
+            <option [ngValue]="null"></option>
+            @for (medicoOption of medicosSharedCollection; track $index) {
+              <option [ngValue]="medicoOption">{{ medicoOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_centrosSalud" jhiTranslate="sumativaApp.reserva.centrosSalud">Centros Salud</label>
+          <select
+            class="form-control"
+            id="field_centrosSalud"
+            data-cy="centrosSalud"
+            name="centrosSalud"
+            formControlName="centrosSalud"
+            [compareWith]="compareCentrosSalud"
+          >
+            <option [ngValue]="null"></option>
+            @for (centrosSaludOption of centrosSaludsSharedCollection; track $index) {
+              <option [ngValue]="centrosSaludOption">{{ centrosSaludOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

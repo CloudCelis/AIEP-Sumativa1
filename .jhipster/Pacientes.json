@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20241119113326"
+  },
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "pacienteId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apellidoPaterno",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apellidoMaterno",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "rut",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fechaNacimiento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "genero",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefono",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Pacientes",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
